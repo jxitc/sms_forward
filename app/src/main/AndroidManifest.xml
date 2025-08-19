@@ -37,6 +37,17 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        
+        <!-- SMS Receiver - temporarily commented out -->
+        <!--
+        <receiver
+            android:name=".receiver.SmsReceiver"
+            android:exported="true">
+            <intent-filter android:priority="1000">
+                <action android:name="android.provider.Telephony.SMS_RECEIVED" />
+            </intent-filter>
+        </receiver>
+        -->
     </application>
 
 </manifest>

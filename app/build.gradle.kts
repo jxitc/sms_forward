@@ -1,19 +1,21 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
-    alias(libs.plugins.kotlin.compose)
-    alias(libs.plugins.hilt.android)
-    id("kotlin-kapt")
+    // Temporarily comment out Compose plugin
+    // alias(libs.plugins.kotlin.compose)
+    // Temporarily comment out Hilt to test basic build
+    // alias(libs.plugins.hilt.android)
+    // id("kotlin-kapt")
 }
 
 android {
     namespace = "com.jxitc.smsforward"
-    compileSdk = 36
+    compileSdk = 34
 
     defaultConfig {
         applicationId = "com.jxitc.smsforward"
         minSdk = 24
-        targetSdk = 36
+        targetSdk = 34
         versionCode = 1
         versionName = "1.0"
 
@@ -39,6 +41,9 @@ android {
     buildFeatures {
         compose = true
     }
+    composeOptions {
+        kotlinCompilerExtensionVersion = "1.5.4"
+    }
 }
 
 dependencies {
@@ -52,10 +57,10 @@ dependencies {
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
     
-    // Room
+    // Room - temporarily comment out kapt
     implementation(libs.androidx.room.runtime)
     implementation(libs.androidx.room.ktx)
-    kapt(libs.androidx.room.compiler)
+    // kapt(libs.androidx.room.compiler)
     
     // WorkManager
     implementation(libs.androidx.work.runtime.ktx)
@@ -66,10 +71,10 @@ dependencies {
     // ViewModel
     implementation(libs.androidx.lifecycle.viewmodel.compose)
     
-    // Hilt
-    implementation(libs.hilt.android)
-    kapt(libs.hilt.compiler)
-    implementation(libs.androidx.hilt.navigation.compose)
+    // Hilt - temporarily commented out
+    // implementation(libs.hilt.android)
+    // kapt(libs.hilt.compiler)
+    // implementation(libs.androidx.hilt.navigation.compose)
     
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
