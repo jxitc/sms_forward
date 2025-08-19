@@ -2,16 +2,10 @@ package com.jxitc.smsforward.utils
 
 import android.telephony.SmsMessage
 import android.util.Log
-import com.jxitc.smsforward.domain.model.Message
-import com.jxitc.smsforward.domain.model.MessageType
-import com.jxitc.smsforward.domain.repository.MessageRepository
-import javax.inject.Inject
-import javax.inject.Singleton
+import com.jxitc.smsforward.domain.usecase.MessageProcessorUseCase
+import com.jxitc.smsforward.domain.usecase.ProcessingResult
 
-@Singleton
-class SmsParser @Inject constructor(
-    private val messageRepository: MessageRepository
-) {
+class SmsParser {
     
     companion object {
         private const val TAG = "SmsParser"
@@ -19,17 +13,16 @@ class SmsParser @Inject constructor(
     
     suspend fun processSmsMessage(smsMessage: SmsMessage) {
         try {
-            val message = Message(
-                type = MessageType.SMS,
-                sender = smsMessage.displayOriginatingAddress ?: "Unknown",
-                content = smsMessage.messageBody ?: "",
-                timestamp = smsMessage.timestampMillis
-            )
+            val sender = smsMessage.displayOriginatingAddress ?: "Unknown"
+            val content = smsMessage.messageBody ?: ""
+            val timestamp = smsMessage.timestampMillis
             
-            Log.d(TAG, "Processing SMS: ${message.sender} - ${message.content}")
+            Log.d(TAG, "Received SMS from $sender: ${content.take(50)}...")
             
-            val messageId = messageRepository.insertMessage(message)
-            Log.d(TAG, "SMS saved with ID: $messageId")
+            // TODO: Re-enable when Hilt is working
+            // val result = messageProcessorUseCase.processIncomingSms(...)
+            // For now, just log the SMS
+            Log.d(TAG, "SMS processing temporarily disabled (no DI)")
             
         } catch (e: Exception) {
             Log.e(TAG, "Error processing SMS message", e)

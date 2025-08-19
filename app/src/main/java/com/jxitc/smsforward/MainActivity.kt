@@ -16,9 +16,6 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.jxitc.smsforward.presentation.screen.PermissionScreen
 import com.jxitc.smsforward.ui.theme.SMSForwardTheme
 import com.jxitc.smsforward.utils.PermissionUtils
-// import dagger.hilt.android.AndroidEntryPoint
-
-// @AndroidEntryPoint
 
 class MainActivity : ComponentActivity() {
     

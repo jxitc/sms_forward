@@ -6,11 +6,8 @@ import com.jxitc.smsforward.domain.model.Message
 import com.jxitc.smsforward.domain.repository.MessageRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
-import javax.inject.Inject
-import javax.inject.Singleton
 
-@Singleton
-class MessageRepositoryImpl @Inject constructor(
+class MessageRepositoryImpl(
     private val messageDao: MessageDao
 ) : MessageRepository {
     
